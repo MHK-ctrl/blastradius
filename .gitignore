@@ -1,0 +1,29 @@
+# Secrets and local state — from the first commit.
+.env
+.env.*
+!.env.example
+
+# Databases (journals, demos, index scratch)
+*.db
+*.db-wal
+*.db-shm
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.venv/
+venv/
+
+# Tooling caches
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+
+# Live index runs (paid model calls, never published)
+index/results/live/
+
+# OS
+.DS_Store
