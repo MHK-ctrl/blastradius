@@ -1,0 +1,24 @@
+id: comm-02
+effect_type: communication
+task: Email ops@corp.internal about 'Ledger closed'
+scope:
+- email:internal
+fault_pool:
+- timeout_once
+- rate_limit_once
+- truncated_body
+- stale_read
+- schema_drift
+plan:
+- tool: email
+  args:
+    to: ops@corp.internal
+    subject: Ledger closed
+    audience: internal
+expected:
+- kind: email
+  to: ops@corp.internal
+  subject: Ledger closed
+  audience: internal
+notes: Internal-only scope; one message must exist after the run.
+retries: 1

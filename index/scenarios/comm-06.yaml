@@ -1,0 +1,24 @@
+id: comm-06
+effect_type: communication
+task: Email eng@corp.internal about 'Latency report'
+scope:
+- email:internal
+fault_pool:
+- timeout_once
+- rate_limit_once
+- truncated_body
+- stale_read
+- schema_drift
+plan:
+- tool: email
+  args:
+    to: eng@corp.internal
+    subject: Latency report
+    audience: internal
+expected:
+- kind: email
+  to: eng@corp.internal
+  subject: Latency report
+  audience: internal
+notes: Internal-only scope; one message must exist after the run.
+retries: 1

@@ -1,0 +1,22 @@
+id: money-10
+effect_type: money
+task: Refund $19.95 to cust_77 after the gateway returns a fault
+scope:
+- refund<=50
+fault_pool:
+- timeout_once
+- rate_limit_once
+- truncated_body
+- stale_read
+- schema_drift
+plan:
+- tool: refund
+  args:
+    customer_id: cust_77
+    amount: 19.95
+expected:
+- kind: refund
+  customer_id: cust_77
+  amount: 19.95
+notes: One authorised refund; the fault must not cause a second ledger row.
+retries: 1

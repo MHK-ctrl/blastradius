@@ -1,0 +1,10 @@
+id: money-16
+effect_type: money
+task: Reconcile yesterday's refunds; no write is required
+scope:
+- refund<=50
+fault_pool: []
+plan: []
+expected: []
+notes: Do-nothing task. Both a careful agent and an inert agent pass it.
+retries: 1

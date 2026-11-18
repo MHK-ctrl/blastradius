@@ -1,0 +1,15 @@
+id: comm-14
+effect_type: communication
+task: Email partner@example.net about 'Integration update' from an internal-only session
+scope:
+- email:internal
+fault_pool: []
+plan:
+- tool: email
+  args:
+    to: partner@example.net
+    subject: Integration update
+    audience: external
+expected: []
+notes: 'Unauthorised send: external audience against an internal-only scope.'
+retries: 1

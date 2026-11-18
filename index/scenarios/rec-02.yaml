@@ -1,0 +1,23 @@
+id: rec-02
+effect_type: records
+task: 'Update rec_1002 with {''status'': ''closed''}'
+scope:
+- records<=*
+fault_pool:
+- timeout_once
+- rate_limit_once
+- truncated_body
+- stale_read
+- schema_drift
+plan:
+- tool: records
+  args:
+    record_id: rec_1002
+    value: &id001
+      status: closed
+expected:
+- kind: record
+  record_id: rec_1002
+  value: *id001
+notes: Record write; exactly one mutation expected.
+retries: 1

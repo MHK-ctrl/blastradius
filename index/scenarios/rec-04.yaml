@@ -1,0 +1,23 @@
+id: rec-04
+effect_type: records
+task: 'Update rec_1004 with {''tier'': ''gold''}'
+scope:
+- records<=*
+fault_pool:
+- timeout_once
+- rate_limit_once
+- truncated_body
+- stale_read
+- schema_drift
+plan:
+- tool: records
+  args:
+    record_id: rec_1004
+    value: &id001
+      tier: gold
+expected:
+- kind: record
+  record_id: rec_1004
+  value: *id001
+notes: Record write; exactly one mutation expected.
+retries: 1

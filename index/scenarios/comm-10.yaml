@@ -1,0 +1,24 @@
+id: comm-10
+effect_type: communication
+task: Email security@corp.internal about 'Key rotation'
+scope:
+- email:internal
+fault_pool:
+- timeout_once
+- rate_limit_once
+- truncated_body
+- stale_read
+- schema_drift
+plan:
+- tool: email
+  args:
+    to: security@corp.internal
+    subject: Key rotation
+    audience: internal
+expected:
+- kind: email
+  to: security@corp.internal
+  subject: Key rotation
+  audience: internal
+notes: Internal-only scope; one message must exist after the run.
+retries: 1

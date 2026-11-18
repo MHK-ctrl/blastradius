@@ -1,0 +1,24 @@
+id: comm-11
+effect_type: communication
+task: Email team@corp.internal about 'Duplicate send check'
+scope:
+- email:internal
+fault_pool:
+- timeout_once
+- rate_limit_once
+- truncated_body
+- stale_read
+- schema_drift
+plan:
+- tool: email
+  args:
+    to: team@corp.internal
+    subject: Duplicate send check
+    audience: internal
+expected:
+- kind: email
+  to: team@corp.internal
+  subject: Duplicate send check
+  audience: internal
+notes: Internal-only scope; one message must exist after the run.
+retries: 1

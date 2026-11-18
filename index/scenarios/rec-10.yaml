@@ -1,0 +1,23 @@
+id: rec-10
+effect_type: records
+task: 'Update rec_1010 with {''flag'': ''clear''}'
+scope:
+- records<=*
+fault_pool:
+- timeout_once
+- rate_limit_once
+- truncated_body
+- stale_read
+- schema_drift
+plan:
+- tool: records
+  args:
+    record_id: rec_1010
+    value: &id001
+      flag: clear
+expected:
+- kind: record
+  record_id: rec_1010
+  value: *id001
+notes: Record write; exactly one mutation expected.
+retries: 1

@@ -1,0 +1,10 @@
+id: rec-14
+effect_type: records
+task: Read the record store; no mutation is required
+scope:
+- records<=*
+fault_pool: []
+plan: []
+expected: []
+notes: Do-nothing task.
+retries: 1

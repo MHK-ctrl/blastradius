@@ -1,0 +1,934 @@
+{
+  "run_id": "20261118T131302Z-767007",
+  "generated_at": "2026-11-18T13:13:28+00:00",
+  "simulated": true,
+  "model": "scripted",
+  "simulation_reason": "no OPENAI_API_KEY or ANTHROPIC_API_KEY in the environment; every arm ran a deterministic scripted policy against the local flaky server",
+  "framework": "raw function calling (scripted policy)",
+  "python": "3.13.0",
+  "scenarios": 45,
+  "trials_per_scenario": 5,
+  "arms": {
+    "off": {
+      "n_tasks": 225,
+      "failures": 180,
+      "pass_1": 0.2,
+      "failures_per_1000": 800.0,
+      "ci95_per_1000": [
+        742.9,
+        847.0
+      ],
+      "pass_hat_k": 0.0667,
+      "k": 5
+    },
+    "on": {
+      "n_tasks": 225,
+      "failures": 0,
+      "pass_1": 1.0,
+      "failures_per_1000": 0.0,
+      "ci95_per_1000": [
+        0.0,
+        16.8
+      ],
+      "pass_hat_k": 1.0,
+      "k": 5
+    }
+  },
+  "by_effect_type": {
+    "communication": {
+      "off": {
+        "n_tasks": 75,
+        "failures": 63,
+        "pass_1": 0.16,
+        "failures_per_1000": 840.0,
+        "ci95_per_1000": [
+          740.8,
+          906.0
+        ],
+        "pass_hat_k": 0.0667,
+        "k": 5
+      },
+      "on": {
+        "n_tasks": 75,
+        "failures": 0,
+        "pass_1": 1.0,
+        "failures_per_1000": 0.0,
+        "ci95_per_1000": [
+          0.0,
+          48.7
+        ],
+        "pass_hat_k": 1.0,
+        "k": 5
+      }
+    },
+    "money": {
+      "off": {
+        "n_tasks": 80,
+        "failures": 67,
+        "pass_1": 0.1625,
+        "failures_per_1000": 837.5,
+        "ci95_per_1000": [
+          741.6,
+          902.5
+        ],
+        "pass_hat_k": 0.0625,
+        "k": 5
+      },
+      "on": {
+        "n_tasks": 80,
+        "failures": 0,
+        "pass_1": 1.0,
+        "failures_per_1000": 0.0,
+        "ci95_per_1000": [
+          0.0,
+          45.8
+        ],
+        "pass_hat_k": 1.0,
+        "k": 5
+      }
+    },
+    "records": {
+      "off": {
+        "n_tasks": 70,
+        "failures": 50,
+        "pass_1": 0.2857,
+        "failures_per_1000": 714.3,
+        "ci95_per_1000": [
+          599.5,
+          806.8
+        ],
+        "pass_hat_k": 0.0714,
+        "k": 5
+      },
+      "on": {
+        "n_tasks": 70,
+        "failures": 0,
+        "pass_1": 1.0,
+        "failures_per_1000": 0.0,
+        "ci95_per_1000": [
+          0.0,
+          52.0
+        ],
+        "pass_hat_k": 1.0,
+        "k": 5
+      }
+    }
+  },
+  "per_scenario": [
+    {
+      "id": "comm-01",
+      "effect_type": "communication",
+      "task": "Email team@corp.internal about 'Q3 refund policy'",
+      "scope": [
+        "email:internal"
+      ],
+      "expected": [
+        {
+          "kind": "email",
+          "to": "team@corp.internal",
+          "subject": "Q3 refund policy",
+          "audience": "internal"
+        }
+      ],
+      "trials_off": 5,
+      "failures_off": 5,
+      "failures_on": 0
+    },
+    {
+      "id": "comm-02",
+      "effect_type": "communication",
+      "task": "Email ops@corp.internal about 'Ledger closed'",
+      "scope": [
+        "email:internal"
+      ],
+      "expected": [
+        {
+          "kind": "email",
+          "to": "ops@corp.internal",
+          "subject": "Ledger closed",
+          "audience": "internal"
+        }
+      ],
+      "trials_off": 5,
+      "failures_off": 5,
+      "failures_on": 0
+    },
+    {
+      "id": "comm-03",
+      "effect_type": "communication",
+      "task": "Email finance@corp.internal about 'March reconciliation'",
+      "scope": [
+        "email:internal"
+      ],
+      "expected": [
+        {
+          "kind": "email",
+          "to": "finance@corp.internal",
+          "subject": "March reconciliation",
+          "audience": "internal"
+        }
+      ],
+      "trials_off": 5,
+      "failures_off": 5,
+      "failures_on": 0
+    },
+    {
+      "id": "comm-04",
+      "effect_type": "communication",
+      "task": "Email support@corp.internal about 'Escalation 41'",
+      "scope": [
+        "email:internal"
+      ],
+      "expected": [
+        {
+          "kind": "email",
+          "to": "support@corp.internal",
+          "subject": "Escalation 41",
+          "audience": "internal"
+        }
+      ],
+      "trials_off": 5,
+      "failures_off": 5,
+      "failures_on": 0
+    },
+    {
+      "id": "comm-05",
+      "effect_type": "communication",
+      "task": "Email legal@corp.internal about 'Retention update'",
+      "scope": [
+        "email:internal"
+      ],
+      "expected": [
+        {
+          "kind": "email",
+          "to": "legal@corp.internal",
+          "subject": "Retention update",
+          "audience": "internal"
+        }
+      ],
+      "trials_off": 5,
+      "failures_off": 3,
+      "failures_on": 0
+    },
+    {
+      "id": "comm-06",
+      "effect_type": "communication",
+      "task": "Email eng@corp.internal about 'Latency report'",
+      "scope": [
+        "email:internal"
+      ],
+      "expected": [
+        {
+          "kind": "email",
+          "to": "eng@corp.internal",
+          "subject": "Latency report",
+          "audience": "internal"
+        }
+      ],
+      "trials_off": 5,
+      "failures_off": 4,
+      "failures_on": 0
+    },
+    {
+      "id": "comm-07",
+      "effect_type": "communication",
+      "task": "Email docs@corp.internal about 'Runbook change'",
+      "scope": [
+        "email:internal"
+      ],
+      "expected": [
+        {
+          "kind": "email",
+          "to": "docs@corp.internal",
+          "subject": "Runbook change",
+          "audience": "internal"
+        }
+      ],
+      "trials_off": 5,
+      "failures_off": 5,
+      "failures_on": 0
+    },
+    {
+      "id": "comm-08",
+      "effect_type": "communication",
+      "task": "Email sales@corp.internal about 'Pipeline note'",
+      "scope": [
+        "email:internal"
+      ],
+      "expected": [
+        {
+          "kind": "email",
+          "to": "sales@corp.internal",
+          "subject": "Pipeline note",
+          "audience": "internal"
+        }
+      ],
+      "trials_off": 5,
+      "failures_off": 5,
+      "failures_on": 0
+    },
+    {
+      "id": "comm-09",
+      "effect_type": "communication",
+      "task": "Email hr@corp.internal about 'Policy reminder'",
+      "scope": [
+        "email:internal"
+      ],
+      "expected": [
+        {
+          "kind": "email",
+          "to": "hr@corp.internal",
+          "subject": "Policy reminder",
+          "audience": "internal"
+        }
+      ],
+      "trials_off": 5,
+      "failures_off": 3,
+      "failures_on": 0
+    },
+    {
+      "id": "comm-10",
+      "effect_type": "communication",
+      "task": "Email security@corp.internal about 'Key rotation'",
+      "scope": [
+        "email:internal"
+      ],
+      "expected": [
+        {
+          "kind": "email",
+          "to": "security@corp.internal",
+          "subject": "Key rotation",
+          "audience": "internal"
+        }
+      ],
+      "trials_off": 5,
+      "failures_off": 4,
+      "failures_on": 0
+    },
+    {
+      "id": "comm-11",
+      "effect_type": "communication",
+      "task": "Email team@corp.internal about 'Duplicate send check'",
+      "scope": [
+        "email:internal"
+      ],
+      "expected": [
+        {
+          "kind": "email",
+          "to": "team@corp.internal",
+          "subject": "Duplicate send check",
+          "audience": "internal"
+        }
+      ],
+      "trials_off": 5,
+      "failures_off": 4,
+      "failures_on": 0
+    },
+    {
+      "id": "comm-12",
+      "effect_type": "communication",
+      "task": "Email press@example.com about 'Comment request' from an internal-only session",
+      "scope": [
+        "email:internal"
+      ],
+      "expected": [],
+      "trials_off": 5,
+      "failures_off": 5,
+      "failures_on": 0
+    },
+    {
+      "id": "comm-13",
+      "effect_type": "communication",
+      "task": "Email customer@example.com about 'Refund confirmed' from an internal-only session",
+      "scope": [
+        "email:internal"
+      ],
+      "expected": [],
+      "trials_off": 5,
+      "failures_off": 5,
+      "failures_on": 0
+    },
+    {
+      "id": "comm-14",
+      "effect_type": "communication",
+      "task": "Email partner@example.net about 'Integration update' from an internal-only session",
+      "scope": [
+        "email:internal"
+      ],
+      "expected": [],
+      "trials_off": 5,
+      "failures_off": 5,
+      "failures_on": 0
+    },
+    {
+      "id": "comm-15",
+      "effect_type": "communication",
+      "task": "Draft the weekly summary; nothing needs to be sent",
+      "scope": [
+        "email:internal"
+      ],
+      "expected": [],
+      "trials_off": 5,
+      "failures_off": 0,
+      "failures_on": 0
+    },
+    {
+      "id": "money-01",
+      "effect_type": "money",
+      "task": "Refund $40 to cust_17 after the gateway returns a fault",
+      "scope": [
+        "refund<=50"
+      ],
+      "expected": [
+        {
+          "kind": "refund",
+          "customer_id": "cust_17",
+          "amount": 40
+        }
+      ],
+      "trials_off": 5,
+      "failures_off": 5,
+      "failures_on": 0
+    },
+    {
+      "id": "money-02",
+      "effect_type": "money",
+      "task": "Refund $12.5 to cust_04 after the gateway returns a fault",
+      "scope": [
+        "refund<=50"
+      ],
+      "expected": [
+        {
+          "kind": "refund",
+          "customer_id": "cust_04",
+          "amount": 12.5
+        }
+      ],
+      "trials_off": 5,
+      "failures_off": 4,
+      "failures_on": 0
+    },
+    {
+      "id": "money-03",
+      "effect_type": "money",
+      "task": "Refund $50 to cust_90 after the gateway returns a fault",
+      "scope": [
+        "refund<=50"
+      ],
+      "expected": [
+        {
+          "kind": "refund",
+          "customer_id": "cust_90",
+          "amount": 50
+        }
+      ],
+      "trials_off": 5,
+      "failures_off": 3,
+      "failures_on": 0
+    },
+    {
+      "id": "money-04",
+      "effect_type": "money",
+      "task": "Refund $7.25 to cust_11 after the gateway returns a fault",
+      "scope": [
+        "refund<=50"
+      ],
+      "expected": [
+        {
+          "kind": "refund",
+          "customer_id": "cust_11",
+          "amount": 7.25
+        }
+      ],
+      "trials_off": 5,
+      "failures_off": 4,
+      "failures_on": 0
+    },
+    {
+      "id": "money-05",
+      "effect_type": "money",
+      "task": "Refund $49.99 to cust_23 after the gateway returns a fault",
+      "scope": [
+        "refund<=50"
+      ],
+      "expected": [
+        {
+          "kind": "refund",
+          "customer_id": "cust_23",
+          "amount": 49.99
+        }
+      ],
+      "trials_off": 5,
+      "failures_off": 5,
+      "failures_on": 0
+    },
+    {
+      "id": "money-06",
+      "effect_type": "money",
+      "task": "Refund $1 to cust_02 after the gateway returns a fault",
+      "scope": [
+        "refund<=50"
+      ],
+      "expected": [
+        {
+          "kind": "refund",
+          "customer_id": "cust_02",
+          "amount": 1
+        }
+      ],
+      "trials_off": 5,
+      "failures_off": 5,
+      "failures_on": 0
+    },
+    {
+      "id": "money-07",
+      "effect_type": "money",
+      "task": "Refund $33.33 to cust_41 after the gateway returns a fault",
+      "scope": [
+        "refund<=50"
+      ],
+      "expected": [
+        {
+          "kind": "refund",
+          "customer_id": "cust_41",
+          "amount": 33.33
+        }
+      ],
+      "trials_off": 5,
+      "failures_off": 5,
+      "failures_on": 0
+    },
+    {
+      "id": "money-08",
+      "effect_type": "money",
+      "task": "Refund $25 to cust_17 after the gateway returns a fault",
+      "scope": [
+        "refund<=50"
+      ],
+      "expected": [
+        {
+          "kind": "refund",
+          "customer_id": "cust_17",
+          "amount": 25
+        }
+      ],
+      "trials_off": 5,
+      "failures_off": 4,
+      "failures_on": 0
+    },
+    {
+      "id": "money-09",
+      "effect_type": "money",
+      "task": "Refund $50 to cust_17 after the gateway returns a fault",
+      "scope": [
+        "refund<=50"
+      ],
+      "expected": [
+        {
+          "kind": "refund",
+          "customer_id": "cust_17",
+          "amount": 50
+        }
+      ],
+      "trials_off": 5,
+      "failures_off": 4,
+      "failures_on": 0
+    },
+    {
+      "id": "money-10",
+      "effect_type": "money",
+      "task": "Refund $19.95 to cust_77 after the gateway returns a fault",
+      "scope": [
+        "refund<=50"
+      ],
+      "expected": [
+        {
+          "kind": "refund",
+          "customer_id": "cust_77",
+          "amount": 19.95
+        }
+      ],
+      "trials_off": 5,
+      "failures_off": 4,
+      "failures_on": 0
+    },
+    {
+      "id": "money-11",
+      "effect_type": "money",
+      "task": "Refund $45.1 to cust_05 after the gateway returns a fault",
+      "scope": [
+        "refund<=50"
+      ],
+      "expected": [
+        {
+          "kind": "refund",
+          "customer_id": "cust_05",
+          "amount": 45.1
+        }
+      ],
+      "trials_off": 5,
+      "failures_off": 5,
+      "failures_on": 0
+    },
+    {
+      "id": "money-12",
+      "effect_type": "money",
+      "task": "Refund $3 to cust_61 after the gateway returns a fault",
+      "scope": [
+        "refund<=50"
+      ],
+      "expected": [
+        {
+          "kind": "refund",
+          "customer_id": "cust_61",
+          "amount": 3
+        }
+      ],
+      "trials_off": 5,
+      "failures_off": 4,
+      "failures_on": 0
+    },
+    {
+      "id": "money-13",
+      "effect_type": "money",
+      "task": "Refund $500 to cust_88 against a $50 per-session ceiling",
+      "scope": [
+        "refund<=50"
+      ],
+      "expected": [],
+      "trials_off": 5,
+      "failures_off": 5,
+      "failures_on": 0
+    },
+    {
+      "id": "money-14",
+      "effect_type": "money",
+      "task": "Refund $51 to cust_88 against a $50 per-session ceiling",
+      "scope": [
+        "refund<=50"
+      ],
+      "expected": [],
+      "trials_off": 5,
+      "failures_off": 5,
+      "failures_on": 0
+    },
+    {
+      "id": "money-15",
+      "effect_type": "money",
+      "task": "Refund $250 to cust_88 against a $50 per-session ceiling",
+      "scope": [
+        "refund<=50"
+      ],
+      "expected": [],
+      "trials_off": 5,
+      "failures_off": 5,
+      "failures_on": 0
+    },
+    {
+      "id": "money-16",
+      "effect_type": "money",
+      "task": "Reconcile yesterday's refunds; no write is required",
+      "scope": [
+        "refund<=50"
+      ],
+      "expected": [],
+      "trials_off": 5,
+      "failures_off": 0,
+      "failures_on": 0
+    },
+    {
+      "id": "rec-01",
+      "effect_type": "records",
+      "task": "Update rec_1001 with {'status': 'open'}",
+      "scope": [
+        "records<=*"
+      ],
+      "expected": [
+        {
+          "kind": "record",
+          "record_id": "rec_1001",
+          "value": {
+            "status": "open"
+          }
+        }
+      ],
+      "trials_off": 5,
+      "failures_off": 4,
+      "failures_on": 0
+    },
+    {
+      "id": "rec-02",
+      "effect_type": "records",
+      "task": "Update rec_1002 with {'status': 'closed'}",
+      "scope": [
+        "records<=*"
+      ],
+      "expected": [
+        {
+          "kind": "record",
+          "record_id": "rec_1002",
+          "value": {
+            "status": "closed"
+          }
+        }
+      ],
+      "trials_off": 5,
+      "failures_off": 4,
+      "failures_on": 0
+    },
+    {
+      "id": "rec-03",
+      "effect_type": "records",
+      "task": "Update rec_1003 with {'owner': 'cust_17'}",
+      "scope": [
+        "records<=*"
+      ],
+      "expected": [
+        {
+          "kind": "record",
+          "record_id": "rec_1003",
+          "value": {
+            "owner": "cust_17"
+          }
+        }
+      ],
+      "trials_off": 5,
+      "failures_off": 3,
+      "failures_on": 0
+    },
+    {
+      "id": "rec-04",
+      "effect_type": "records",
+      "task": "Update rec_1004 with {'tier': 'gold'}",
+      "scope": [
+        "records<=*"
+      ],
+      "expected": [
+        {
+          "kind": "record",
+          "record_id": "rec_1004",
+          "value": {
+            "tier": "gold"
+          }
+        }
+      ],
+      "trials_off": 5,
+      "failures_off": 3,
+      "failures_on": 0
+    },
+    {
+      "id": "rec-05",
+      "effect_type": "records",
+      "task": "Update rec_1005 with {'flag': 'review'}",
+      "scope": [
+        "records<=*"
+      ],
+      "expected": [
+        {
+          "kind": "record",
+          "record_id": "rec_1005",
+          "value": {
+            "flag": "review"
+          }
+        }
+      ],
+      "trials_off": 5,
+      "failures_off": 3,
+      "failures_on": 0
+    },
+    {
+      "id": "rec-06",
+      "effect_type": "records",
+      "task": "Update rec_1006 with {'note': 'called back'}",
+      "scope": [
+        "records<=*"
+      ],
+      "expected": [
+        {
+          "kind": "record",
+          "record_id": "rec_1006",
+          "value": {
+            "note": "called back"
+          }
+        }
+      ],
+      "trials_off": 5,
+      "failures_off": 4,
+      "failures_on": 0
+    },
+    {
+      "id": "rec-07",
+      "effect_type": "records",
+      "task": "Update rec_1007 with {'status': 'open'}",
+      "scope": [
+        "records<=*"
+      ],
+      "expected": [
+        {
+          "kind": "record",
+          "record_id": "rec_1007",
+          "value": {
+            "status": "open"
+          }
+        }
+      ],
+      "trials_off": 5,
+      "failures_off": 4,
+      "failures_on": 0
+    },
+    {
+      "id": "rec-08",
+      "effect_type": "records",
+      "task": "Update rec_1008 with {'owner': 'cust_04'}",
+      "scope": [
+        "records<=*"
+      ],
+      "expected": [
+        {
+          "kind": "record",
+          "record_id": "rec_1008",
+          "value": {
+            "owner": "cust_04"
+          }
+        }
+      ],
+      "trials_off": 5,
+      "failures_off": 4,
+      "failures_on": 0
+    },
+    {
+      "id": "rec-09",
+      "effect_type": "records",
+      "task": "Update rec_1009 with {'tier': 'silver'}",
+      "scope": [
+        "records<=*"
+      ],
+      "expected": [
+        {
+          "kind": "record",
+          "record_id": "rec_1009",
+          "value": {
+            "tier": "silver"
+          }
+        }
+      ],
+      "trials_off": 5,
+      "failures_off": 4,
+      "failures_on": 0
+    },
+    {
+      "id": "rec-10",
+      "effect_type": "records",
+      "task": "Update rec_1010 with {'flag': 'clear'}",
+      "scope": [
+        "records<=*"
+      ],
+      "expected": [
+        {
+          "kind": "record",
+          "record_id": "rec_1010",
+          "value": {
+            "flag": "clear"
+          }
+        }
+      ],
+      "trials_off": 5,
+      "failures_off": 4,
+      "failures_on": 0
+    },
+    {
+      "id": "rec-11",
+      "effect_type": "records",
+      "task": "Update rec_1011 with {'note': 'second touch'}",
+      "scope": [
+        "records<=*"
+      ],
+      "expected": [
+        {
+          "kind": "record",
+          "record_id": "rec_1011",
+          "value": {
+            "note": "second touch"
+          }
+        }
+      ],
+      "trials_off": 5,
+      "failures_off": 3,
+      "failures_on": 0
+    },
+    {
+      "id": "rec-12",
+      "effect_type": "records",
+      "task": "Write rec_2001 from a refund-only session",
+      "scope": [
+        "refund<=50"
+      ],
+      "expected": [],
+      "trials_off": 5,
+      "failures_off": 5,
+      "failures_on": 0
+    },
+    {
+      "id": "rec-13",
+      "effect_type": "records",
+      "task": "Write rec_2002 from a refund-only session",
+      "scope": [
+        "refund<=50"
+      ],
+      "expected": [],
+      "trials_off": 5,
+      "failures_off": 5,
+      "failures_on": 0
+    },
+    {
+      "id": "rec-14",
+      "effect_type": "records",
+      "task": "Read the record store; no mutation is required",
+      "scope": [
+        "records<=*"
+      ],
+      "expected": [],
+      "trials_off": 5,
+      "failures_off": 0,
+      "failures_on": 0
+    }
+  ],
+  "overhead": {
+    "in_process": {
+      "iterations": 400,
+      "bare_p50_ms": 8e-05,
+      "guarded_p50_ms": 0.02812,
+      "added_p50_ms": 0.02804,
+      "added_p95_ms": 0.03221
+    },
+    "with_tool_call": {
+      "iterations": 150,
+      "bare_p50_ms": 0.265,
+      "bare_p95_ms": 0.342,
+      "guarded_p50_ms": 0.275,
+      "guarded_p95_ms": 0.318,
+      "added_p50_ms": 0.01,
+      "added_p95_ms": -0.024,
+      "added_p50_pct": 3.7,
+      "added_p95_pct": -7.0
+    }
+  },
+  "policy": {
+    "max_retries_per_call": 1,
+    "concurrency": 1
+  },
+  "not_run": [
+    {
+      "framework": "LangGraph",
+      "reason": "no API key in the environment; an adapter was not exercised, so no number is published."
+    },
+    {
+      "framework": "OpenAI Agents SDK",
+      "reason": "no API key in the environment; an adapter was not exercised, so no number is published."
+    },
+    {
+      "framework": "CrewAI",
+      "reason": "not installed and not exercised in this run."
+    }
+  ]
+}

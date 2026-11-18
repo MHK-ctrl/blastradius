@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Method — blastradius</title>
+<link rel="stylesheet" href="style.css"></head><body><main>
+
+<h1>How the index is measured</h1>
+<p><a href="index.html">Back to the numbers</a></p>
+<p><strong>SIMULATED.</strong> This run had no model API key, so every arm is a
+deterministic scripted policy driving a local fault-injection server, not an LLM.
+No number here is a model result.</p>
+<h2>What is counted</h2>
+<p>A task passes only if the server's final ledger equals the scenario's declared
+expected state, exactly — same number of rows, same fields. Anything else counts
+once as a duplicate-or-unauthorised write. The oracle is the ledger, never the
+guard's own journal.</p>
+<h2>Design</h2>
+<ul>
+<li>45 scenarios across money, communication and records.</li>
+<li>5 trials per scenario per arm, each with a seed that selects the fault.</li>
+<li>Two arms per scenario: guard off and guard on, same seeds, same faults.</li>
+<li>Faults: timeout after the effect is applied, 429 before it, truncated body after
+it, stale read after it, schema drift after it.</li>
+<li>Task-level retry policy: one retry per tool call, identical in both arms.</li>
+<li>Metrics: failures per 1,000 tasks with a 95% Wilson interval; pass^1 and pass^k
+with k = 5, computed as C(c,k)/C(n,k) per scenario and averaged.</li>
+</ul>
+<h2>Impossible and do-nothing tasks</h2>
+<p>The set includes tasks that must be refused (a refund above the ceiling, an
+external send from an internal-only session) and tasks where no write is correct.
+A do-nothing agent passes the second kind, so those tasks are counted but they do
+not inflate the score; they exist to catch an agent that acts when it should not.</p>
+<h2>What this run does not show</h2>
+<p>It does not measure any LLM, any framework, or any real payment API. Model is
+<code>scripted</code> (SIMULATED). LangGraph and the OpenAI Agents SDK are listed on
+the front page as not run: no key was present and an unexercised adapter is worse
+than an empty row. Raw per-trial JSON, including every ledger row, is committed
+under <code>index/results/</code> in the <a href="https://github.com/MHK-ctrl/blastradius">repository</a>.</p>
+
+</main><footer><p>blastradius · <a href="https://github.com/MHK-ctrl/blastradius">GitHub</a> · <a href="method.html">Method</a> · <a href="corrections.html">Corrections</a> · <a href="data/summary.json">raw summary</a> · last updated 2026-11-18T13:13:28+00:00</p></footer></body></html>

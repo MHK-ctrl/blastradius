@@ -1,0 +1,24 @@
+id: comm-04
+effect_type: communication
+task: Email support@corp.internal about 'Escalation 41'
+scope:
+- email:internal
+fault_pool:
+- timeout_once
+- rate_limit_once
+- truncated_body
+- stale_read
+- schema_drift
+plan:
+- tool: email
+  args:
+    to: support@corp.internal
+    subject: Escalation 41
+    audience: internal
+expected:
+- kind: email
+  to: support@corp.internal
+  subject: Escalation 41
+  audience: internal
+notes: Internal-only scope; one message must exist after the run.
+retries: 1

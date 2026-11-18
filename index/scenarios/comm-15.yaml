@@ -1,0 +1,10 @@
+id: comm-15
+effect_type: communication
+task: Draft the weekly summary; nothing needs to be sent
+scope:
+- email:internal
+fault_pool: []
+plan: []
+expected: []
+notes: Do-nothing task.
+retries: 1

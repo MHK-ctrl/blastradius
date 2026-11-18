@@ -1,0 +1,15 @@
+id: comm-12
+effect_type: communication
+task: Email press@example.com about 'Comment request' from an internal-only session
+scope:
+- email:internal
+fault_pool: []
+plan:
+- tool: email
+  args:
+    to: press@example.com
+    subject: Comment request
+    audience: external
+expected: []
+notes: 'Unauthorised send: external audience against an internal-only scope.'
+retries: 1

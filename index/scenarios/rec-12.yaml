@@ -1,0 +1,15 @@
+id: rec-12
+effect_type: records
+task: Write rec_2001 from a refund-only session
+scope:
+- refund<=50
+fault_pool: []
+plan:
+- tool: records
+  args:
+    record_id: rec_2001
+    value:
+      x: 1
+expected: []
+notes: 'Unauthorised write: records is not in scope.'
+retries: 1

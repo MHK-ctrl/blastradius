@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>blastradius — the Blast Radius Index</title>
+<link rel="stylesheet" href="style.css"></head><body><main>
+<h1>blastradius · the Blast Radius Index</h1>
+<p class="lede">Duplicate-or-unauthorised writes per 1,000 tasks, measured with the guard off and on, against the same scenarios, seeds and faults.</p>
+<div class="banner"><strong>SIMULATED DATA.</strong> no OPENAI_API_KEY or ANTHROPIC_API_KEY in the environment; every arm ran a deterministic scripted policy against the local flaky server. These are not LLM results and must not be read as such.</div>
+<div class="cards">
+<div class="card"><span class="big">800.0</span><span class="small">per 1,000 tasks, guard off<br>n=225, 95% CI 742.9 – 847.0</span></div>
+<div class="card"><span class="big">0.0</span><span class="small">per 1,000 tasks, guard on<br>n=225, 95% CI 0.0 – 16.8</span></div>
+<div class="card"><span class="big">45 &times; 5</span><span class="small">scenarios &times; trials per arm<br>model: scripted (SIMULATED)</span></div>
+</div>
+
+<h2>Leaderboard</h2>
+<p>Every row states n and a 95% Wilson interval. A row exists only if it actually ran.</p>
+<div class="scroll"><table>
+<tr><th>Framework</th><th>Model</th><th>Arm</th><th>Tasks (n)</th><th>Duplicate-or-unauthorised / 1,000</th><th>95% CI</th><th>pass^1</th><th>pass^k</th></tr>
+<tr><td>raw function calling (scripted policy)</td><td>scripted</td><td>guard off</td><td>225</td><td>800.0</td><td>742.9 – 847.0</td><td>0.200</td><td>0.07</td></tr><tr><td>raw function calling (scripted policy)</td><td>scripted</td><td>guard on</td><td>225</td><td>0.0</td><td>0.0 – 16.8</td><td>1.000</td><td>1.00</td></tr>
+</table></div>
+<h3>Not run, and why</h3>
+<table><tr><th>Framework</th><th>Reason</th></tr><tr><td>LangGraph</td><td>no API key in the environment; an adapter was not exercised, so no number is published.</td></tr><tr><td>OpenAI Agents SDK</td><td>no API key in the environment; an adapter was not exercised, so no number is published.</td></tr><tr><td>CrewAI</td><td>not installed and not exercised in this run.</td></tr></table>
+
+<h2>Before and after, by effect type</h2>
+<table><tr><th>Effect type</th><th>Arm</th><th>n</th><th>Per 1,000</th><th>95% CI</th></tr>
+<tr><td>communication</td><td>guard off</td><td>75</td><td>840.0</td><td>740.8 – 906.0</td></tr><tr><td>communication</td><td>guard on</td><td>75</td><td>0.0</td><td>0.0 – 48.7</td></tr><tr><td>money</td><td>guard off</td><td>80</td><td>837.5</td><td>741.6 – 902.5</td></tr><tr><td>money</td><td>guard on</td><td>80</td><td>0.0</td><td>0.0 – 45.8</td></tr><tr><td>records</td><td>guard off</td><td>70</td><td>714.3</td><td>599.5 – 806.8</td></tr><tr><td>records</td><td>guard on</td><td>70</td><td>0.0</td><td>0.0 – 52.0</td></tr>
+</table>
+
+<h2>What it costs</h2>
+<table><tr><th></th><th>p50 (ms)</th><th>p95 (ms)</th></tr>
+<tr><td>bare local tool call</td><td>0.265</td><td>0.342</td></tr>
+<tr><td>guarded local tool call</td><td>0.275</td><td>0.318</td></tr>
+<tr><td>added</td><td>+0.010</td><td>-0.024</td></tr>
+</table>
+<p>150 calls per arm, in-process guard cost 28.0 µs p50 and 32.2 µs p95. Against a no-op function the percentage is meaningless; against the local tool round trip measured above it is 3.7% at p50.</p>
+
+<h2>Run it on your agent</h2>
+<pre><code>from blastradius import Session, guard
+
+@guard(effect=&quot;refund&quot;, undo=reverse_refund)
+def issue_refund(customer_id, amount, *, session, idempotency_key=None):
+    return payments.refund(customer_id, amount, idempotency_key=idempotency_key)
+
+with Session(scope=[&quot;refund&lt;=50&quot;]) as session:
+    issue_refund(&quot;cust_17&quot;, 40, session=session)
+</code></pre>
+<p>The guard forwards an <code>idempotency_key</code> only if your tool accepts one. In-process duplicate collapse works either way; exactly-once across processes requires the callee to honour the key.</p>
+
+<p><a href="method.html">How this is measured</a> · <a href="corrections.html">Corrections log</a> · <a href="https://github.com/MHK-ctrl/blastradius">source</a></p>
+</main><footer><p>blastradius · <a href="https://github.com/MHK-ctrl/blastradius">GitHub</a> · <a href="method.html">Method</a> · <a href="corrections.html">Corrections</a> · <a href="data/summary.json">raw summary</a> · last updated 2026-11-18T13:13:28+00:00</p></footer></body></html>
